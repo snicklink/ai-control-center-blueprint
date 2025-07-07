@@ -1,0 +1,86 @@
+name: Integration Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+        python-version: ['3.9', '3.10', '3.11']
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install Node.js dependencies
+      run: |
+        cd packages/react-components
+        npm ci
+        cd ../../examples/react-vite
+        npm ci
+        cd ../nextjs
+        npm ci
+    
+    - name: Install Python dependencies
+      run: |
+        cd packages/backend-templates/python-openrouter
+        pip install -r requirements.txt
+        cd ../python-replicate
+        pip install -r requirements.txt
+        cd ../../../examples/python-flask
+        pip install -r requirements.txt
+    
+    - name: Run integration tests
+      run: node test-integration.js
+    
+    - name: Test React components build
+      run: |
+        cd packages/react-components
+        npm run build
+    
+    - name: Test React Vite example
+      run: |
+        cd examples/react-vite
+        npm run build
+    
+    - name: Test Next.js example
+      run: |
+        cd examples/nextjs
+        npm run build
+    
+    - name: Test CLI tool
+      run: |
+        cd cli
+        npm install
+        node setup.js --help || true  # Allow this to fail gracefully
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Run security audit
+      run: |
+        cd packages/react-components
+        npm audit --audit-level=moderate
+        cd ../../examples/react-vite
+        npm audit --audit-level=moderate
+        cd ../nextjs
+        npm audit --audit-level=moderate

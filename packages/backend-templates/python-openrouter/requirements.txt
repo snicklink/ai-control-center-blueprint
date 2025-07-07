@@ -1,0 +1,16 @@
+# OpenRouter AI Service Dependencies
+# Production-ready Flask service for OpenRouter integration
+
+# Core dependencies
+flask==3.1.0
+flask-cors==6.0.1
+openai==1.93.1
+python-dotenv==1.1.1
+
+# Optional dependencies for enhanced functionality
+requests==2.31.0
+
+# Development dependencies (optional)
+pytest==8.3.3
+black==24.10.0
+flake8==7.1.1

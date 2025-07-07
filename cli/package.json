@@ -1,0 +1,44 @@
+{
+  "name": "@ai-blueprint/cli",
+  "version": "1.0.0",
+  "description": "CLI tool for AI Control Center Blueprint project setup",
+  "main": "setup.js",
+  "bin": {
+    "ai-blueprint": "./setup.js",
+    "ai-control-center": "./setup.js"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "ai",
+    "control-center",
+    "blueprint",
+    "cli",
+    "setup",
+    "openrouter",
+    "replicate",
+    "react",
+    "nextjs",
+    "python"
+  ],
+  "author": "AI Control Center Blueprint",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^11.1.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.4",
+    "commander": "^9.4.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/willykramer/ai-control-center-blueprint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/willykramer/ai-control-center-blueprint/issues"
+  },
+  "homepage": "https://github.com/willykramer/ai-control-center-blueprint#readme"
+}

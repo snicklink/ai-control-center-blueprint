@@ -1,0 +1,362 @@
+/* AI Control Center - Professional Design */
+.ai-control-center {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  overflow-y: auto;
+}
+
+.ai-control-center.loading {
+  justify-content: center;
+  align-items: center;
+}
+
+/* Header */
+.ai-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ai-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ai-icon {
+  color: #3b82f6;
+}
+
+.ai-title h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ai-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #10b981;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
+/* Cost Section */
+.cost-section h3,
+.model-section h3,
+.stats-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e5e7eb;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cost-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.cost-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.cost-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cost-card.low {
+  border-left: 3px solid #10b981;
+}
+
+.cost-card.medium {
+  border-left: 3px solid #f59e0b;
+}
+
+.cost-card.high {
+  border-left: 3px solid #ef4444;
+}
+
+.cost-label {
+  font-size: 11px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.cost-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.cost-detail {
+  font-size: 10px;
+  color: #6b7280;
+}
+
+.cost-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 6px;
+  color: #fca5a5;
+  font-size: 12px;
+}
+
+/* Model Section */
+.model-control {
+  margin-bottom: 20px;
+}
+
+.model-control label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #d1d5db;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.model-selector {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.model-selector select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 12px 40px 12px 16px;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.model-selector select:hover {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.model-selector select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.model-selector select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.select-icon {
+  position: absolute;
+  right: 12px;
+  color: #6b7280;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.switching-icon {
+  position: absolute;
+  right: 36px;
+  color: #3b82f6;
+  pointer-events: none;
+}
+
+.model-selector.switching select {
+  pointer-events: none;
+}
+
+.model-info {
+  margin-top: 8px;
+}
+
+.model-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quality-badge {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.quality-badge.high,
+.quality-badge.very-high {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.quality-badge.medium {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.cost-info {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.voice-details {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* Stats Section */
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-label {
+  display: block;
+  font-size: 10px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Refresh Button */
+.refresh-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: auto;
+}
+
+.refresh-button:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+}
+
+.refresh-button:active {
+  transform: translateY(0);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: #6b7280;
+}
+
+.loading-spinner span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 320px) {
+  .ai-control-center {
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .cost-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
